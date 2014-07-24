@@ -1,2 +1,8 @@
 Tests: upstream
-Depends: @, upower, network-manager, ofono-scripts | ofono, libnotify-bin, policykit-1, systemd-services | systemd
+Depends: @,
+ upower,
+ network-manager,
+ ofono-scripts | ofono,
+ libnotify-bin,
+ policykit-1,
+ systemd-services | systemd
