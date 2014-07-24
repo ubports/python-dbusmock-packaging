@@ -5,4 +5,5 @@ Depends: @,
  ofono-scripts | ofono,
  libnotify-bin,
  policykit-1,
+ bluez,
  systemd-services | systemd
