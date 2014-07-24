@@ -1,11 +1,11 @@
-python-dbusmock (0.11-1) UNRELEASED; urgency=medium
+python-dbusmock (0.11-1) unstable; urgency=medium
 
   * New upstream release.
   * Package is maintained in git now, adjust Vcs-* tags.
   * debian/tests/control: Wrap dependencies.
   * Add bluez test dependency to cover new bluez 4 template.
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 24 Jul 2014 06:50:04 +0200
+ -- Martin Pitt <mpitt@debian.org>  Thu, 24 Jul 2014 07:08:49 +0200
 
 python-dbusmock (0.10.3-1) unstable; urgency=medium
 
