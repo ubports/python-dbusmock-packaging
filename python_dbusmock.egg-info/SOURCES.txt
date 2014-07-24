@@ -8,6 +8,7 @@ dbusmock/__main__.py
 dbusmock/mockobject.py
 dbusmock/testcase.py
 dbusmock/templates/__init__.py
+dbusmock/templates/bluez4.py
 dbusmock/templates/bluez5-obex.py
 dbusmock/templates/bluez5.py
 dbusmock/templates/gnome_screensaver.py
@@ -23,7 +24,8 @@ python_dbusmock.egg-info/SOURCES.txt
 python_dbusmock.egg-info/dependency_links.txt
 python_dbusmock.egg-info/top_level.txt
 tests/test_api.py
-tests/test_bluez.py
+tests/test_bluez4.py
+tests/test_bluez5.py
 tests/test_cli.py
 tests/test_code.py
 tests/test_consolekit.py
