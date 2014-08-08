@@ -1,4 +1,4 @@
-python-dbusmock (0.11.1-1) UNRELEASED; urgency=medium
+python-dbusmock (0.11.1-1) unstable; urgency=medium
 
   * New upstream release:
     - logind template: Fix type of IdleSinceHint property, and add
@@ -6,7 +6,7 @@ python-dbusmock (0.11.1-1) UNRELEASED; urgency=medium
     - NetworkManager template: Add "Devices" and "AccessPoints" properties of
       NetworkManager 0.9.10. (LP: #1328579)
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 08 Aug 2014 08:16:27 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 08 Aug 2014 08:17:34 +0200
 
 python-dbusmock (0.11-1) unstable; urgency=medium
 
