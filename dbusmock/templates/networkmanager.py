@@ -66,8 +66,10 @@ def load(mock, parameters):
 
     mock.AddProperties('',
                        {
+                           'Devices': dbus.Array([], signature='o'),
                            'NetworkingEnabled': parameters.get('NetworkingEnabled', True),
                            'State': parameters.get('State', dbus.UInt32(70)),
+                           'Startup': False,
                            'Version': parameters.get('Version', '0.9.6.0'),
                            'WimaxEnabled': parameters.get('WimaxEnabled', True),
                            'WimaxHardwareEnabled': parameters.get('WimaxHardwareEnabled', True),
@@ -77,8 +79,8 @@ def load(mock, parameters):
                            'WwanHardwareEnabled': parameters.get('WwanHardwareEnabled', True)
                        })
 
-    settings_props = {'Hostname': dbus.String('hostname', variant_level=1),
-                      'CanModify': dbus.Boolean(1, variant_level=1),
+    settings_props = {'Hostname': 'hostname',
+                      'CanModify': True,
                       'Connections': dbus.Array([], signature='o')}
     settings_methods = [('ListConnections', '', 'ao', "ret = self.Get('%s', 'Connections')" % SETTINGS_IFACE),
                         ('GetConnectionByUuid', 's', 'o', ''),
@@ -106,23 +108,28 @@ def AddEthernetDevice(self, device_name, iface_name, state):
     Returns the new object path.
     '''
     path = '/org/freedesktop/NetworkManager/Devices/' + device_name
-    wired_props = {'Carrier': dbus.Boolean(0, variant_level=1),
-                   'HwAddress': dbus.String("78:DD:08:D2:3D:43", variant_level=1),
-                   'PermHwAddress': dbus.String("78:DD:08:D2:3D:43", variant_level=1),
-                   'Speed': dbus.UInt32(0, variant_level=1)}
+    wired_props = {'Carrier': False,
+                   'HwAddress': '78:DD:08:D2:3D:43',
+                   'PermHwAddress': '78:DD:08:D2:3D:43',
+                   'Speed': dbus.UInt32(0)}
     self.AddObject(path,
                    'org.freedesktop.NetworkManager.Device.Wired',
                    wired_props,
                    [])
 
-    props = {'DeviceType': dbus.UInt32(1, variant_level=1),
-             'State': dbus.UInt32(state, variant_level=1),
-             'Interface': dbus.String(iface_name, variant_level=1),
+    props = {'DeviceType': dbus.UInt32(1),
+             'State': dbus.UInt32(state),
+             'Interface': iface_name,
              'AvailableConnections': dbus.Array([], signature='o'),
-             'IpInterface': dbus.String('', variant_level=1)}
+             'IpInterface': ''}
 
     obj = dbusmock.get_object(path)
     obj.AddProperties(DEVICE_IFACE, props)
+
+    devices = self.Get(MAIN_IFACE, 'Devices')
+    devices.append(path)
+    self.Set(MAIN_IFACE, 'Devices', devices)
+
     return path
 
 
@@ -146,14 +153,17 @@ def AddWiFiDevice(self, device_name, iface_name, state):
     self.AddObject(path,
                    'org.freedesktop.NetworkManager.Device.Wireless',
                    {
-                       'HwAddress': dbus.String('11:22:33:44:55:66', variant_level=1),
-                       'PermHwAddress': dbus.String('11:22:33:44:55:66', variant_level=1),
-                       'Bitrate': dbus.UInt32(5400, variant_level=1),
-                       'Mode': dbus.UInt32(2, variant_level=1),
-                       'WirelessCapabilities': dbus.UInt32(255, variant_level=1)
+                       'HwAddress': '11:22:33:44:55:66',
+                       'PermHwAddress': '11:22:33:44:55:66',
+                       'Bitrate': dbus.UInt32(5400),
+                       'Mode': dbus.UInt32(2),
+                       'WirelessCapabilities': dbus.UInt32(255),
+                       'AccessPoints': dbus.Array([], signature='o'),
                    },
                    [
                        ('GetAccessPoints', '', 'ao',
+                        'ret = self.access_points'),
+                       ('GetAllAccessPoints', '', 'ao',
                         'ret = self.access_points'),
                        ('RequestScan', 'a{sv}', '', ''),
                    ])
@@ -163,11 +173,19 @@ def AddWiFiDevice(self, device_name, iface_name, state):
     dev_obj.AddProperties(DEVICE_IFACE,
                           {
                               'AvailableConnections': dbus.Array([], signature='o'),
-                              'DeviceType': dbus.UInt32(2, variant_level=1),
-                              'State': dbus.UInt32(state, variant_level=1),
-                              'Interface': dbus.String(iface_name, variant_level=1),
-                              'IpInterface': dbus.String(iface_name, variant_level=1)
+                              'AutoConnect': False,
+                              'Managed': True,
+                              'Driver': 'dbusmock',
+                              'DeviceType': dbus.UInt32(2),
+                              'State': dbus.UInt32(state),
+                              'Interface': iface_name,
+                              'IpInterface': iface_name,
                           })
+
+    devices = self.Get(MAIN_IFACE, 'Devices')
+    devices.append(path)
+    self.Set(MAIN_IFACE, 'Devices', devices)
+
     return path
 
 
@@ -195,18 +213,23 @@ def AddAccessPoint(self, dev_path, ap_name, ssid, hw_address,
 
     self.AddObject(ap_path,
                    ACCESS_POINT_IFACE,
-                   {'Ssid': dbus.ByteArray(ssid.encode('UTF-8'), variant_level=1),
-                    'HwAddress': dbus.String(hw_address.encode('UTF-8'), variant_level=1),
-                    'Flags': dbus.UInt32(1, variant_level=1),
-                    'Frequency': dbus.UInt32(frequency, variant_level=1),
-                    'MaxBitrate': dbus.UInt32(rate, variant_level=1),
-                    'Mode': dbus.UInt32(mode, variant_level=1),
-                    'RsnFlags': dbus.UInt32(324, variant_level=1),
-                    'WpaFlags': dbus.UInt32(security, variant_level=1),
-                    'Strength': dbus.Byte(strength, variant_level=1)},
+                   {'Ssid': dbus.ByteArray(ssid.encode('UTF-8')),
+                    'HwAddress': dbus.String(hw_address),
+                    'Flags': dbus.UInt32(1),
+                    'LastSeen': dbus.Int32(1),
+                    'Frequency': dbus.UInt32(frequency),
+                    'MaxBitrate': dbus.UInt32(rate),
+                    'Mode': dbus.UInt32(mode),
+                    'RsnFlags': dbus.UInt32(324),
+                    'WpaFlags': dbus.UInt32(security),
+                    'Strength': dbus.Byte(strength)},
                    [])
 
     dev_obj.access_points.append(ap_path)
+
+    aps = dev_obj.Get('org.freedesktop.NetworkManager.Device.Wireless', 'AccessPoints')
+    aps.append(ap_path)
+    dev_obj.Set('org.freedesktop.NetworkManager.Device.Wireless', 'AccessPoints', aps)
 
     return ap_path
 
