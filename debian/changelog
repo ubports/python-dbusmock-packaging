@@ -1,3 +1,10 @@
+python-dbusmock (0.11.1-2) UNRELEASED; urgency=medium
+
+  * Mark packages as Multi-Arch: foreign for cross-building.
+    (LP: #1357388)
+
+ -- Martin Pitt <mpitt@debian.org>  Mon, 18 Aug 2014 08:07:16 +0200
+
 python-dbusmock (0.11.1-1) unstable; urgency=medium
 
   * New upstream release:

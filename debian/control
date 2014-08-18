@@ -29,6 +29,7 @@ XS-Testsuite: autopkgtest
 
 Package: python-dbusmock
 Architecture: all
+Multi-Arch: foreign
 Depends: ${python:Depends},
  python-dbus,
  python-gi,
@@ -56,6 +57,7 @@ Description: mock D-Bus objects for tests (Python 2)
 
 Package: python3-dbusmock
 Architecture: all
+Multi-Arch: foreign
 Depends: ${python3:Depends},
  python3-dbus,
  python3-gi,
