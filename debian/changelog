@@ -1,6 +1,7 @@
 python-dbusmock (0.11.2-1) UNRELEASED; urgency=medium
 
   * New upstream bug fix release.
+  * Bump Standards-Version to 3.9.6 (no changes necessary).
 
  -- Martin Pitt <mpitt@debian.org>  Fri, 19 Sep 2014 08:40:27 +0200
 
