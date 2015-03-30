@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: python-dbusmock
-Version: 0.13
+Version: 0.14
 Summary: Mock D-Bus objects
 Home-page: https://launchpad.net/python-dbusmock
 Author: Martin Pitt
@@ -285,18 +285,15 @@ Description: python-dbusmock
         
         Development
         -----------
-        python-dbusmock is hosted on gitorious:
+        python-dbusmock is hosted on github:
         
-          https://gitorious.org/python-dbusmock/python-dbusmock
-        
-        For getting the latest code, you can check out the branch:
-        
-          git clone git://gitorious.org/python-dbusmock/python-dbusmock.git
+          https://github.com/martinpitt/python-dbusmock
         
         Feedback
         --------
-        For feature requests and bugs, please file reports at
+        For feature requests and bugs, please file reports at one of:
         
+          https://github.com/martinpitt/python-dbusmock/issues
           https://bugs.launchpad.net/python-dbusmock
         
 Platform: UNKNOWN
