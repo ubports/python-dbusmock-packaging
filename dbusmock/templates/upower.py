@@ -207,8 +207,8 @@ def SetupDisplayDevice(self, type, state, percentage, energy, energy_full,
     '''
     if not self.api1:
         raise dbus.exceptions.DBusException(
-            MOCK_IFACE + '.APIVersion',
-            'SetupDisplayDevice() can only be used with the 1.0 API')
+            'SetupDisplayDevice() can only be used with the 1.0 API',
+            name=MOCK_IFACE + '.APIVersion')
 
     display_props = mockobject.objects[self.p_display_dev]
     display_props.Set(DEVICE_IFACE, 'Type',
@@ -252,14 +252,5 @@ def SetDeviceProperties(self, object_path, properties):
         device.Set(DEVICE_IFACE, key, value)
 
     # notify the listeners
-    if self.api1:
-        device.EmitSignal(dbus.PROPERTIES_IFACE,
-                          'PropertiesChanged',
-                          'sa{sv}as',
-                          [
-                              DEVICE_IFACE,
-                              properties,
-                              []
-                          ])
-    else:
+    if not self.api1:
         self.EmitSignal(MAIN_IFACE, 'DeviceChanged', 's', [object_path])
