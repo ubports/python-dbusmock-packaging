@@ -25,7 +25,6 @@ Standards-Version: 3.9.6
 X-Python-Version: >= 2.7
 X-Python3-Version: >= 3.2
 Homepage: https://gitorious.org/python-dbusmock
-XS-Testsuite: autopkgtest
 
 Package: python-dbusmock
 Architecture: all
