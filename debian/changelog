@@ -1,9 +1,9 @@
-python-dbusmock (0.14-2) UNRELEASED; urgency=medium
+python-dbusmock (0.14-2) unstable; urgency=medium
 
   * debian/control: Drop obsolete XS-Testsuite: field, dpkg adds this
     automatically now.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 27 Apr 2015 09:55:54 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 27 Apr 2015 10:06:49 +0200
 
 python-dbusmock (0.14-1) experimental; urgency=medium
 
