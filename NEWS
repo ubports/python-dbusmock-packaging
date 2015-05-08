@@ -1,3 +1,16 @@
+0.15 (2015-05-08)
+-------------------
+ - NetworkManager template: Restore nm-specific PropertiesChanged signal
+ - NetworkManager template: Add DeactivateConnection(),
+   Settings.AddConnection(), Settings.Connection.Update(), and
+   Settings.Connection.Delete() methods. Also allow Connections with
+   autoconnect, added using AddConnection, to be automatically connected by the
+   first found device, roughly like NetworkManager itself does. Thanks Jonas
+   Grønås Drange!
+ - NetworkManager template: Fix broken exception in AddWiFiConnection.
+ - NetworkManager template: Set RsnFlags to have the same value as WpaFlags.
+   Thanks Pete Woods!
+
 0.14 (2015-03-30)
 -----------------
  - Move project hosting to github, update README.rst.
