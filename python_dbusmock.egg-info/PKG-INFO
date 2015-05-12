@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: python-dbusmock
-Version: 0.15
+Version: 0.15.1
 Summary: Mock D-Bus objects
 Home-page: https://launchpad.net/python-dbusmock
 Author: Martin Pitt
