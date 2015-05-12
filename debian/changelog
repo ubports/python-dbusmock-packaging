@@ -1,4 +1,4 @@
-python-dbusmock (0.15.1-1) UNRELEASED; urgency=medium
+python-dbusmock (0.15.1-1) unstable; urgency=medium
 
   * New upstream release.
     - SECURITY FIX: When loading a template from an arbitrary file through the
@@ -13,7 +13,7 @@ python-dbusmock (0.15.1-1) UNRELEASED; urgency=medium
       directly in world-writable directories.
       (LP: #1453815, CVE-2015-1326)
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 12 May 2015 12:47:57 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 12 May 2015 12:49:53 +0200
 
 python-dbusmock (0.15-1) unstable; urgency=medium
 
