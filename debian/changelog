@@ -1,8 +1,8 @@
-python-dbusmock (0.15.2-1) UNRELEASED; urgency=medium
+python-dbusmock (0.15.2-1) unstable; urgency=medium
 
   * New upstream release.
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 11 Jun 2015 12:53:36 +0200
+ -- Martin Pitt <mpitt@debian.org>  Thu, 11 Jun 2015 12:54:07 +0200
 
 python-dbusmock (0.15.1-1) unstable; urgency=medium
 
