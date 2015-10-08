@@ -150,11 +150,17 @@ class NM80211ApFlags:
 
 
 def activate_connection(self, conn, dev, ap):
-    name = ap.rsplit('/', 1)[1]
-    RemoveActiveConnection(self, dev, '/org/freedesktop/NetworkManager/ActiveConnection/' + name)
+    # find a new name
+    count = 0
+    active_connections = dbusmock.get_object(MAIN_OBJ).Get(MAIN_IFACE, 'ActiveConnections')
+    while True:
+        path = dbus.ObjectPath('/org/freedesktop/NetworkManager/ActiveConnection/' + str(count))
+        if path not in active_connections:
+            break
+        count += 1
 
     state = dbus.UInt32(NMActiveConnectionState.NM_ACTIVE_CONNECTION_STATE_ACTIVATED)
-    active_conn = dbus.ObjectPath(AddActiveConnection(self, [dev], conn, ap, name, state))
+    active_conn = dbus.ObjectPath(AddActiveConnection(self, [dev], conn, ap, str(count), state))
 
     return active_conn
 
@@ -190,7 +196,8 @@ def load(mock, parameters):
         ('CheckConnectivity', '', 'u', "ret = self.Get('%s', 'Connectivity')" % MAIN_IFACE),
         ('ActivateConnection', 'ooo', 'o', "ret = self.activate_connection(self, args[0], args[1], args[2])"),
         ('DeactivateConnection', 'o', '', "self.deactivate_connection(self, args[0])"),
-        ('AddAndActivateConnection', 'a{sa{sv}}oo', 'oo', "ret = self.add_and_activate_connection(self, args[0], args[1], args[2])"),
+        ('AddAndActivateConnection', 'a{sa{sv}}oo', 'oo', "ret = self.add_and_activate_connection("
+                                     "self, args[0], args[1], args[2])"),
     ])
 
     mock.AddProperties('',
