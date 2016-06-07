@@ -1,6 +1,7 @@
 python-dbusmock (0.16.4-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Bump Standards-Version to 3.9.8 (no changes necessary).
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 07 Jun 2016 15:19:12 +0200
 
