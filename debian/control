@@ -15,7 +15,7 @@ Build-Depends-Indep: upower,
  python3-dbus,
  python3-gi,
  gir1.2-glib-2.0 (>= 1.32),
- dbus-x11,
+ dbus,
  libnotify-bin
 Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Uploaders: Martin Pitt <mpitt@debian.org>
@@ -33,7 +33,7 @@ Depends: ${python:Depends},
  python-dbus,
  python-gi,
  gir1.2-glib-2.0 (>= 1.32),
- dbus-x11,
+ dbus,
  ${misc:Depends}
 Description: mock D-Bus objects for tests (Python 2)
  With python-dbusmock you can easily create mock objects on D-Bus. This is
