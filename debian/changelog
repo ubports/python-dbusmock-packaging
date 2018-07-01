@@ -1,3 +1,12 @@
+python-dbusmock (0.18-1) unstable; urgency=medium
+
+  * New upstream release:
+    - Fix tests for systemd 239. (Closes #902602)
+  * Adjust Vcs-* for the move to salsa.debian.org
+  * Bump Standards-Version to 4.1.4.  No changes needed.
+
+ -- Martin Pitt <mpitt@debian.org>  Sun, 01 Jul 2018 20:38:04 +0000
+
 python-dbusmock (0.17.2-1) unstable; urgency=medium
 
   * Switch to new upstream release location on GitHub.
