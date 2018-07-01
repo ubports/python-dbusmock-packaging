@@ -1,13 +1,12 @@
 Metadata-Version: 1.1
 Name: python-dbusmock
-Version: 0.17.2
+Version: 0.18
 Summary: Mock D-Bus objects
 Home-page: https://github.com/martinpitt/python-dbusmock
 Author: Martin Pitt
 Author-email: martin.pitt@ubuntu.com
 License: LGPL 3+
 Download-URL: https://pypi.python.org/pypi/python-dbusmock/
-Description-Content-Type: UNKNOWN
 Description: python-dbusmock
         ===============
         
