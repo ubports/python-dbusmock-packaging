@@ -1,3 +1,11 @@
+python-dbusmock (0.18.1-2) unstable; urgency=medium
+
+  * debian/tests: Allow stderr messages.
+    This avoids failing on Python 3.7 deprecation warnings, or messages from
+    e. g. upower.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 13 Nov 2018 09:16:02 +0000
+
 python-dbusmock (0.18.1-1) unstable; urgency=medium
 
   [ Jelmer Vernooĳ ]
