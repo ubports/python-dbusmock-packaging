@@ -7,3 +7,4 @@ Depends: @,
  policykit-1,
  bluez,
  systemd-services | systemd
+Restrictions: allow-stderr
