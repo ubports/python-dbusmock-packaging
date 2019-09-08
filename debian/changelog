@@ -1,3 +1,10 @@
+python-dbusmock (0.18.3-1) unstable; urgency=medium
+
+  * New upstream version 0.18.3
+  * Bump Standards-Version to 4.4.0. No changes necessary.
+
+ -- Martin Pitt <mpitt@debian.org>  Sun, 08 Sep 2019 21:05:00 +0000
+
 python-dbusmock (0.18.2-1) unstable; urgency=medium
 
   * Bump Standards-Version to 4.3.0.  No changes necessary.
