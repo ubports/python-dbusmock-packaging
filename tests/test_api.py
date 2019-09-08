@@ -190,7 +190,7 @@ assert args[2] == 5
                 self.fail('method call did not raise an error for signature "%s" and arguments %s'
                           % (signature, args))
             except dbus.exceptions.DBusException as e:
-                self.assertTrue(err in str(e), e)
+                self.assertIn(err, str(e))
 
         # not enough arguments
         check('i', [], 'TypeError: More items found')
@@ -344,20 +344,28 @@ assert args[2] == 5
         dbus_introspect = dbus.Interface(self.obj_test, dbus.INTROSPECTABLE_IFACE)
 
         xml_empty = dbus_introspect.Introspect()
-        self.assertTrue('<interface name="org.freedesktop.DBus.Mock">' in xml_empty, xml_empty)
-        self.assertTrue('<method name="AddMethod">' in xml_empty, xml_empty)
+        self.assertIn('<interface name="org.freedesktop.DBus.Mock">', xml_empty)
+        self.assertIn('<method name="AddMethod">', xml_empty)
 
         self.dbus_mock.AddMethod('', 'Do', 'saiv', 'i', 'ret = 42')
 
         xml_method = dbus_introspect.Introspect()
-        self.assertFalse(xml_empty == xml_method, 'No change from empty XML')
-        self.assertTrue('<interface name="org.freedesktop.Test.Main">' in xml_method, xml_method)
-        self.assertTrue('''<method name="Do">
+        self.assertNotEqual(xml_empty, xml_method)
+        self.assertIn('<interface name="org.freedesktop.Test.Main">', xml_method)
+        # various Python versions use different name vs. type ordering
+        expected1 = '''<method name="Do">
       <arg direction="in" name="arg1" type="s" />
       <arg direction="in" name="arg2" type="ai" />
       <arg direction="in" name="arg3" type="v" />
       <arg direction="out" type="i" />
-    </method>''' in xml_method, xml_method)
+    </method>'''
+        expected2 = '''<method name="Do">
+      <arg direction="in" type="s" name="arg1" />
+      <arg direction="in" type="ai" name="arg2" />
+      <arg direction="in" type="v" name="arg3" />
+      <arg direction="out" type="i" />
+    </method>'''
+        self.assertTrue(expected1 in xml_method or expected2 in xml_method, xml_method)
 
     # properties in introspection are not supported by dbus-python right now
     def test_introspection_properties(self):
@@ -368,10 +376,13 @@ assert args[2] == 5
 
         xml = self.obj_test.Introspect()
 
-        self.assertTrue('<interface name="org.freedesktop.Test.Main">' in xml, xml)
-        self.assertTrue('<interface name="org.freedesktop.Test.Sub">' in xml, xml)
-        self.assertTrue('<property access="readwrite" name="Color" type="s" />' in xml, xml)
-        self.assertTrue('<property access="readwrite" name="Count" type="i" />' in xml, xml)
+        self.assertIn('<interface name="org.freedesktop.Test.Main">', xml)
+        self.assertIn('<interface name="org.freedesktop.Test.Sub">', xml)
+        # various Python versions use different attribute ordering
+        self.assertTrue('<property access="readwrite" name="Color" type="s" />' in xml or
+                        '<property name="Color" type="s" access="readwrite" />' in xml, xml)
+        self.assertTrue('<property access="readwrite" name="Count" type="i" />' in xml or
+                        '<property name="Count" type="i" access="readwrite" />' in xml, xml)
 
     def test_objects_map(self):
         '''access global objects map'''
@@ -467,7 +478,7 @@ assert args[2] == 5
                 self.fail('EmitSignal did not raise an error for signature "%s" and arguments %s'
                           % (signature, args))
             except dbus.exceptions.DBusException as e:
-                self.assertTrue(err in str(e), e)
+                self.assertIn(err, str(e))
 
         # not enough arguments
         check('i', [], 'TypeError: More items found')
@@ -483,7 +494,7 @@ assert args[2] == 5
         check('s', [1], 'TypeError: Expected a string')
 
     def test_dbus_get_log(self):
-        '''query call logs over D-BUS'''
+        '''query call logs over D-Bus'''
 
         self.assertEqual(self.dbus_mock.ClearCalls(), None)
         self.assertEqual(self.dbus_mock.GetCalls(), dbus.Array([]))
@@ -514,7 +525,7 @@ assert args[2] == 5
         self.assertEqual(self.dbus_mock.GetCalls(), dbus.Array([]))
 
     def test_dbus_get_method_calls(self):
-        '''query method call logs over D-BUS'''
+        '''query method call logs over D-Bus'''
 
         self.dbus_mock.AddMethod('', 'Do', '', '', '')
         self.assertEqual(self.dbus_test.Do(), None)

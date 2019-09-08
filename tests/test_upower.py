@@ -37,7 +37,7 @@ if have_upower:
         upower_client_version = out.splitlines()[0].split()[-1]
         assert p.returncode == 0
     except IndexError:
-        # FIXME: this happens in environments without a system D-BUS; upower
+        # FIXME: this happens in environments without a system D-Bus; upower
         # 0.9 still prints the client version, 0.99 just crashes
         upower_client_version = '0.99'
 else:
@@ -78,7 +78,7 @@ class TestUPower(dbusmock.DBusTestCase):
         for line in out.splitlines():
             if line.endswith('/DisplayDevice'):
                 continue
-            self.assertFalse('Device' in line, out)
+            self.assertNotIn('Device', line)
         self.assertRegex(out, 'on-battery:\\s+yes')
         self.assertRegex(out, 'lid-is-present:\\s+yes')
 
@@ -245,7 +245,7 @@ class TestUPower1(dbusmock.DBusTestCase):
         for line in out.splitlines():
             if line.endswith('/DisplayDevice'):
                 continue
-            self.assertFalse('Device' in line, out)
+            self.assertNotIn('Device', line)
         self.assertRegex(out, 'on-battery:\\s+yes')
         self.assertRegex(out, 'lid-is-present:\\s+yes')
 
