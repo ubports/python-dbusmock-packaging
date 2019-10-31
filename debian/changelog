@@ -1,3 +1,10 @@
+python-dbusmock (0.18.3-2) unstable; urgency=medium
+
+  * Drop Python 2 package.
+    All reverse dependencies got updated to Python 3 now. (Closes: #937688)
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 31 Oct 2019 10:30:11 +0000
+
 python-dbusmock (0.18.3-1) unstable; urgency=medium
 
   * New upstream version 0.18.3
