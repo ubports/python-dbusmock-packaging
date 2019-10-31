@@ -3,14 +3,9 @@ Section: python
 Priority: optional
 Build-Depends: debhelper (>= 10),
  dh-python,
- python-all,
- python-setuptools,
  python3-all,
  python3-setuptools
 Build-Depends-Indep: upower,
- python-nose,
- python-dbus,
- python-gi,
  python3-nose,
  python3-dbus,
  python3-gi,
@@ -24,34 +19,6 @@ Vcs-Git: https://salsa.debian.org/debian/python-dbusmock.git
 Standards-Version: 4.4.0
 Homepage: https://github.com/martinpitt/python-dbusmock/
 
-Package: python-dbusmock
-Architecture: all
-Multi-Arch: foreign
-Depends: ${python:Depends},
- python-dbus,
- python-gi,
- gir1.2-glib-2.0 (>= 1.32),
- dbus,
- ${misc:Depends}
-Description: mock D-Bus objects for tests (Python 2)
- With python-dbusmock you can easily create mock objects on D-Bus. This is
- useful for writing tests for software which talks to D-Bus services such as
- upower, systemd, ConsoleKit, gnome-session or others, and it is hard (or
- impossible without root privileges) to set the state of the real services to
- what you expect in your tests.
- .
- Mock objects look like the real API (or at least the parts that you actually
- need), but they do not actually do anything (or only some action that you
- specify yourself). You can configure their state, behaviour and responses as
- you like in your test, without making any assumptions about the real system
- status.
- .
- You can use this with any programming language, as you can run the mocker as a
- normal program. The actual setup of the mock (adding objects, methods,
- properties, etc.) all happen via D-Bus methods on the
- org.freedesktop.DBus.Mock interface. You just don't have the convenience
- D-Bus launch API that way.
-
 Package: python3-dbusmock
 Architecture: all
 Multi-Arch: foreign
@@ -61,7 +28,7 @@ Depends: ${python3:Depends},
  gir1.2-glib-2.0 (>= 1.32),
  dbus-x11,
  ${misc:Depends}
-Description: mock D-Bus objects for tests (Python 3)
+Description: mock D-Bus objects for tests
  With python-dbusmock you can easily create mock objects on D-Bus. This is
  useful for writing tests for software which talks to D-Bus services such as
  upower, systemd, ConsoleKit, gnome-session or others, and it is hard (or
