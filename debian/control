@@ -14,8 +14,8 @@ Build-Depends-Indep: upower,
  libnotify-bin
 Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Uploaders: Martin Pitt <mpitt@debian.org>
-Vcs-Browser: https://salsa.debian.org/debian/python-dbusmock
-Vcs-Git: https://salsa.debian.org/debian/python-dbusmock.git
+Vcs-Browser: https://salsa.debian.org/python-team/modules/python-dbusmock
+Vcs-Git: https://salsa.debian.org/python-team/modules/python-dbusmock
 Standards-Version: 4.4.0
 Homepage: https://github.com/martinpitt/python-dbusmock/
 
