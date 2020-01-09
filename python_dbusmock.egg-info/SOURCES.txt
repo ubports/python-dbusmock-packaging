@@ -13,6 +13,7 @@ dbusmock/templates/bluez5-obex.py
 dbusmock/templates/bluez5.py
 dbusmock/templates/gnome_screensaver.py
 dbusmock/templates/logind.py
+dbusmock/templates/low_memory_monitor.py
 dbusmock/templates/networkmanager.py
 dbusmock/templates/notification_daemon.py
 dbusmock/templates/ofono.py
@@ -32,6 +33,7 @@ tests/test_code.py
 tests/test_consolekit.py
 tests/test_gnome_screensaver.py
 tests/test_logind.py
+tests/test_low_memory_monitor.py
 tests/test_networkmanager.py
 tests/test_notification_daemon.py
 tests/test_ofono.py
