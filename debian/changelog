@@ -1,7 +1,10 @@
-python-dbusmock (0.19-1~ubports16.04.1) UNRELEASED; urgency=medium
+python-dbusmock (0.19-1~ubports16.04.1) xenial; urgency=medium
 
+  * Import to UBports
+  * Backport to Xenial
+    - Drop Debhelper compatibility to 9.
 
- -- Ratchanan Srirattanamet <ratchanan@ubports.com>  Tue, 21 Apr 2020 02:13:11 +0700
+ -- Ratchanan Srirattanamet <ratchanan@ubports.com>  Tue, 21 Apr 2020 02:56:58 +0700
 
 python-dbusmock (0.19-1) unstable; urgency=medium
 
